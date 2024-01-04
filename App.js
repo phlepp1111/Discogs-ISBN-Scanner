@@ -11,8 +11,32 @@ export default function App() {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Scanner">
-                <Stack.Screen name="Scanner" component={Scanner} />
-                <Stack.Screen name="Results" component={Results} />
+                <Stack.Screen
+                    name="Scanner"
+                    component={Scanner}
+                    options={{
+                        headerStyle: {
+                            backgroundColor: "#181818",
+                        },
+                        headerTintColor: "#fff",
+                        headerTitleStyle: {
+                            fontWeight: "bold",
+                        },
+                    }}
+                />
+                <Stack.Screen
+                    name="Results"
+                    component={Results}
+                    options={{
+                        headerStyle: {
+                            backgroundColor: "#181818",
+                        },
+                        headerTintColor: "#fff",
+                        headerTitleStyle: {
+                            fontWeight: "bold",
+                        },
+                    }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );
