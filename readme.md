@@ -1,4 +1,4 @@
-This is very much a workk in progress.
+This is very much a work in progress.
 
 The idea is to be able to have a record in hand, scan it's ISBN number and get a result from the Discogs API.
 
