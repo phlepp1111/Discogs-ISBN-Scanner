@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button, StatusBar } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+
 import ApiRequest from "./ApiRequest";
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 export default function Scanner() {
+    const navigation = useNavigation();
+
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [showScanner, setShowScanner] = useState(false);
@@ -11,7 +16,6 @@ export default function Scanner() {
     useEffect(() => {
         const getBarCodeScannerPermissions = async () => {
             const { status } = await BarCodeScanner.requestPermissionsAsync();
-            // console.log("camera permission", status);
             setHasPermission(status === "granted");
         };
 
@@ -31,12 +35,13 @@ export default function Scanner() {
         setShowScanner(false);
     };
 
-    const handleBarCodeScanned = ({ type, data }) => {
+    const handleBarCodeScanned = async ({ type, data }) => {
         setScanned(true);
-        // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
         setShowScanner(false);
         const api = ApiRequest();
-        api.getRelease(data);
+        const results = await api.getRelease(data);
+        console.log(results);
+        navigation.navigate("Results", { results });
     };
     const handleScanAgain = () => {
         setScanned(false);

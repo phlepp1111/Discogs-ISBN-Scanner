@@ -13,7 +13,8 @@ export default function ApiRequest() {
             }
         );
         const release = await response.json();
-        console.log(release.results);
+        // console.log(release.results);
+        return release.results;
     };
     return { getRelease };
 }
