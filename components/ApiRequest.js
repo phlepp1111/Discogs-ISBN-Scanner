@@ -1,11 +1,6 @@
-// import { Client as Discogs } from "disconnect";
 import token from "../secrets";
 
-export default function ApiRequest(isbn) {
-    // const db = new Discogs(
-    //     "Discogs-ISBN-Scanner/0.1 +https://github.com/phlepp1111/Discogs-ISBN-Scanner"
-    // ).database();
-
+export default function ApiRequest() {
     const getRelease = async (isbn) => {
         const response = await fetch(
             `https://api.discogs.com/database/search?q=${isbn}&type=release`,
@@ -18,7 +13,7 @@ export default function ApiRequest(isbn) {
             }
         );
         const release = await response.json();
-        console.log(release);
+        console.log(release.results);
     };
     return { getRelease };
 }
